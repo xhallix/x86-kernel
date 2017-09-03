@@ -74,13 +74,9 @@ Vagrant.configure(2) do |config|
       curl -sf https://raw.githubusercontent.com/brson/multirust/master/blastoff.sh | sh -s -- --yes
       multirust default nightly-2015-11-19 
   SHELL
-
+  config.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777","fmode=666"], type: "rsync",
+    rsync__exclude: ".git/"
   config.ssh.forward_x11 = true
 end
 
 
-Vagrant.configure("2") do |config|
-  # other config here
-
-  config.vm.synced_folder "./", "/vagrant"
-end
